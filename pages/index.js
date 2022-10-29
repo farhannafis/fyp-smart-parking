@@ -2,14 +2,32 @@ import mqtt from "mqtt";
 
 export default function Home() {
 
-  const client = mqtt.connect("mqtt://broker.emqx.io:1883");
+  const clientId = 'mqttjs_' + Math.random().toString(16).substr(2, 8)
+
+  const options = {
+    keepalive: 60,
+    clientId: clientId,
+    protocolId: 'MQTT',
+    protocolVersion: 4,
+    clean: true,
+    reconnectPeriod: 1000,
+    connectTimeout: 30 * 1000,
+    will: {
+      topic: 'WillMsg',
+      payload: 'Connection Closed abnormally..!',
+      qos: 0,
+      retain: false
+    },
+  }
+
+  const client = mqtt.connect("ws://broker.emqx.io:8083/mqtt", options);
 
   client.on("connect", (err) => {
     if (err) {
       console.error(err);
       return;
     }
-    console.log('Connected to mqtt://broker.emqx.io:1883');
+    console.log('Connected to wss://broker.emqx.io:8084');
   })
 
   client.subscribe('esp8266/EFEN', (err) => {
