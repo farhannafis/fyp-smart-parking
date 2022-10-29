@@ -20,14 +20,14 @@ export default function Home() {
     },
   }
 
-  const client = mqtt.connect("ws://broker.emqx.io:8083/mqtt", options);
+  const client = mqtt.connect("wss://broker.emqx.io:8084/mqtt", options);
 
   client.on("connect", (err) => {
     if (err) {
       console.error(err);
       return;
     }
-    console.log('Connected to wss://broker.emqx.io:8084');
+    console.log('Connected to wss://broker.emqx.io:8084/mqtt');
   })
 
   client.subscribe('esp8266/EFEN', (err) => {
