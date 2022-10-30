@@ -93,7 +93,9 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-slate-100 p-8 text-center">
-      <h1 className="text-4xl font-extrabold text-slate-800">Smart Parking App</h1>
+      <h1 className="text-4xl font-extrabold text-slate-800">IoT Based Smart Parking System</h1>
+      <p className="mt-2 text-sm">by</p>
+      <p className="mt-2 font-medium text-slate-700">Lailatul Jaaizah & Assha Nadhirah</p>
       <span className={clsx(
         {
           "bg-sky-400/10 text-sky-500 ring-sky-500": connectStatus === 'Restarting System',
